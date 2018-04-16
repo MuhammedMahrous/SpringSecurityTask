@@ -1,16 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <global-method-security jsr250-annotations="enabled" secured-annotations="enabled" pre-post-annotations="enabled" />
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <security:global-method-security jsr250-annotations="enabled" secured-annotations="enabled" pre-post-annotations="enabled"/>
     <context:component-scan base-package="com.springsecurity.labs.labone.service"/>
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="Mahrous" password="123456" authorities="ROLE_ADMIN"/>
-                <user name="David" password="123456" authorities="ROLE_USER"/>
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="Mahrous" password="123456" authorities="ROLE_ADMIN"/>
+                <security:user name="David" password="123456" authorities="ROLE_USER"/>
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <bean id="myService" class="com.springsecurity.labs.labone.service.MyService"/>
 </beans>
+  
